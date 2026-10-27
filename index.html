@@ -67,6 +67,12 @@
       stroke: #D6336C;
       stroke-dasharray: 3 2;
     }
+
+    /* Step 3: chimney smoke, scoped to the adjusted copy only */
+    #scene-adjusted .smoke {
+      fill: #EEEEEE;
+      opacity: 0.85;
+    }
   </style>
 </head>
 <body>
@@ -276,6 +282,147 @@
       <circle class="marker" cx="400" cy="470" r="3.5" />
       <text x="400" y="490" text-anchor="middle">text: x=400, y=470 (baseline, text-anchor=middle)</text>
     </g>
+  </svg>
+  </figure>
+
+  <!-- Step 3: copy of the scene with small customisations (changes are commented) -->
+  <figure id="scene-adjusted-figure">
+    <figcaption>Adjusted scene (Step 3)</figcaption>
+  <svg id="scene-adjusted" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="adjusted-title adjusted-desc">
+    <title id="adjusted-title">House and garden scene (adjusted)</title>
+    <desc id="adjusted-desc">The house and garden scene with stronger colours, a dashed fence, a curved stone footpath to the door, a mailbox and smoke rising from the chimney.</desc>
+
+    <!-- Sky (rect): CHANGED to a slightly deeper blue for more contrast with the white cloud -->
+    <rect x="0" y="0" width="800" height="340" fill="#6EC1E4" />
+
+    <!-- Sun (circle): CHANGED added an orange outline -->
+    <circle cx="700" cy="80" r="40" fill="#FFD43B" stroke="#F59F00" stroke-width="3" />
+
+    <!-- Cloud (overlapping ellipses) -->
+    <ellipse cx="170" cy="90" rx="60" ry="25" fill="#FFFFFF" />
+    <ellipse cx="215" cy="78" rx="45" ry="22" fill="#FFFFFF" />
+    <ellipse cx="130" cy="80" rx="38" ry="20" fill="#FFFFFF" />
+
+    <!-- Rolling hills (path): CHANGED to a deeper green -->
+    <path d="M 0 330 C 150 260, 300 270, 450 320 C 560 285, 700 250, 800 290 L 800 345 L 0 345 Z"
+          fill="#8CC152" />
+
+    <!-- Grass (rect): CHANGED to a darker green so the hills stand out -->
+    <rect x="0" y="340" width="800" height="160" fill="#4FA83D" />
+
+    <!-- Tree: MOVED 30 units right with translate (original coordinates kept) -->
+    <g transform="translate(30,0)">
+      <rect x="600" y="260" width="24" height="100" fill="#7A4A1E" />
+      <!-- CHANGED: darker leaf outline with a thick stroke -->
+      <circle cx="612" cy="225" r="55" fill="#2E8B57" stroke="#1E5E3A" stroke-width="4" />
+    </g>
+
+    <!-- Fence rails (line) drawn first so the pickets sit in front -->
+    <line x1="15" y1="358" x2="225" y2="358" stroke="#8B6B4A" stroke-width="4" />
+    <line x1="15" y1="378" x2="225" y2="378" stroke="#8B6B4A" stroke-width="4" />
+
+    <!-- Fence pickets (polyline): CHANGED to a darker, thicker, dashed outline -->
+    <polyline points="20,390 20,345 30,335 40,345 40,390
+                      50,390 50,345 60,335 70,345 70,390
+                      80,390 80,345 90,335 100,345 100,390
+                      110,390 110,345 120,335 130,345 130,390
+                      140,390 140,345 150,335 160,345 160,390
+                      170,390 170,345 180,335 190,345 190,390
+                      200,390 200,345 210,335 220,345 220,390"
+              fill="#FFFFFF" stroke="#666666" stroke-width="2" stroke-dasharray="4 3" />
+
+    <!-- NEW: curved stone footpath from the door down to the bottom edge -->
+    <!-- Outline (path): two cubic curves (C) joined by a straight edge (L) along the bottom -->
+    <path d="M 362 380 C 360 430, 290 440, 200 500 L 280 500 C 340 450, 400 430, 398 380 Z"
+          fill="#CBBBA0" stroke="#8A7A66" stroke-width="2" />
+    <!-- Stepping stones: a thick dashed line with round ends following the middle of the path -->
+    <path d="M 380 388 C 376 440, 300 460, 240 500"
+          fill="none" stroke="#9E9384" stroke-width="14" stroke-dasharray="12 10" stroke-linecap="round" />
+
+    <!-- House: MOVED 20 units right with translate so it sits more centrally between fence and tree -->
+    <g transform="translate(20,0)">
+      <!-- NEW: chimney smoke puffs (ellipse), growing as they rise -->
+      <ellipse class="smoke" cx="432" cy="124" rx="9" ry="6" />
+      <ellipse class="smoke" cx="442" cy="107" rx="13" ry="9" />
+      <ellipse class="smoke" cx="458" cy="86" rx="17" ry="12" />
+
+      <!-- Chimney (rect) drawn before the roof so the roof covers its base -->
+      <rect x="415" y="140" width="26" height="60" fill="#8E3B2A" stroke="#5C2418" stroke-width="1.5" />
+
+      <!-- House body (rect): CHANGED to a thicker, darker outline -->
+      <rect x="250" y="220" width="220" height="160" fill="#F4D9A6" stroke="#6B4423" stroke-width="3" />
+
+      <!-- Roof (polygon): CHANGED to a thicker, darker outline -->
+      <polygon points="235,220 360,130 485,220" fill="#B5452B" stroke="#5C2418" stroke-width="4" />
+
+      <!-- Door (rect): CHANGED added a thin outline; door knob (circle) -->
+      <rect x="340" y="300" width="40" height="80" fill="#6B3E26" stroke="#3E2414" stroke-width="1.5" />
+      <circle cx="372" cy="342" r="3" fill="#FFD43B" />
+
+      <!-- Left window (rect) with mullions (line) -->
+      <rect x="275" y="250" width="35" height="30" fill="#BFE6FF" stroke="#333333" stroke-width="2.5" />
+      <line x1="292.5" y1="250" x2="292.5" y2="280" stroke="#333333" stroke-width="1.5" />
+      <line x1="275" y1="265" x2="310" y2="265" stroke="#333333" stroke-width="1.5" />
+
+      <!-- Right window (rect) with mullions (line) -->
+      <rect x="410" y="250" width="35" height="30" fill="#BFE6FF" stroke="#333333" stroke-width="2.5" />
+      <line x1="427.5" y1="250" x2="427.5" y2="280" stroke="#333333" stroke-width="1.5" />
+      <line x1="410" y1="265" x2="445" y2="265" stroke="#333333" stroke-width="1.5" />
+    </g>
+
+    <!-- NEW: mailbox beside the footpath -->
+    <rect x="444" y="415" width="8" height="40" fill="#7A4A1E" />                      <!-- post (rect) -->
+    <rect x="430" y="400" width="36" height="20" fill="#2F6FB5" stroke="#1D4A7A" stroke-width="1.5" /> <!-- box (rect) -->
+    <polygon points="428,400 448,388 468,400" fill="#1D4A7A" />                        <!-- lid (polygon) -->
+    <polygon points="466,404 478,408 466,412" fill="#E03131" />                        <!-- flag (polygon) -->
+
+    <!-- NEW: golden dog on the lawn, facing the house -->
+    <g id="dog">
+      <!-- Tail (path): one curve (C) with a thick round stroke -->
+      <path d="M 588 400 C 604 392, 610 382, 604 372" fill="none" stroke="#D4973F" stroke-width="5" stroke-linecap="round" />
+      <!-- Legs (rect), drawn before the body so the body covers their tops -->
+      <rect x="536" y="410" width="7" height="24" rx="3" fill="#C8892F" />
+      <rect x="548" y="410" width="7" height="24" rx="3" fill="#D4973F" />
+      <rect x="568" y="410" width="7" height="24" rx="3" fill="#C8892F" />
+      <rect x="580" y="410" width="7" height="24" rx="3" fill="#D4973F" />
+      <!-- Body (ellipse) -->
+      <ellipse cx="562" cy="404" rx="32" ry="15" fill="#E0A84F" />
+      <!-- Neck (ellipse) joins the head to the body -->
+      <ellipse cx="540" cy="396" rx="9" ry="11" fill="#E0A84F" />
+      <!-- Head (circle) and snout (ellipse) -->
+      <circle cx="530" cy="387" r="14" fill="#E0A84F" />
+      <ellipse cx="516" cy="392" rx="10" ry="6.5" fill="#EDBE6E" />
+      <!-- Floppy ear (ellipse), tilted with rotate(angle, cx, cy) -->
+      <ellipse cx="537" cy="389" rx="5" ry="11" fill="#B9782F" transform="rotate(20 537 389)" />
+      <!-- Eye and nose (circle) -->
+      <circle cx="525" cy="383" r="2" fill="#2B1B0E" />
+      <circle cx="507" cy="391" r="2.5" fill="#2B1B0E" />
+      <!-- Red collar (line) -->
+      <line x1="539" y1="381" x2="543" y2="398" stroke="#E03131" stroke-width="4" stroke-linecap="round" />
+    </g>
+
+    <!-- NEW: pink bunny sitting on the lawn below the fence, facing right -->
+    <g id="bunny">
+      <!-- Fluffy tail (circle), drawn first so the body half-covers it -->
+      <circle cx="92" cy="448" r="6" fill="#FFE3EE" />
+      <!-- Body (ellipse) and feet (ellipse) -->
+      <ellipse cx="110" cy="445" rx="18" ry="15" fill="#F7A8C8" />
+      <ellipse cx="110" cy="459" rx="11" ry="4" fill="#F28AB3" />
+      <ellipse cx="126" cy="458" rx="5" ry="3" fill="#F28AB3" />
+      <!-- Long ears (ellipse) tilted apart with rotate, inner ear in lighter pink -->
+      <ellipse cx="122" cy="408" rx="4.5" ry="13" fill="#F7A8C8" transform="rotate(-12 122 408)" />
+      <ellipse cx="122" cy="409" rx="2" ry="9" fill="#FFD1E3" transform="rotate(-12 122 408)" />
+      <ellipse cx="132" cy="407" rx="4.5" ry="13" fill="#F7A8C8" transform="rotate(12 132 407)" />
+      <ellipse cx="132" cy="408" rx="2" ry="9" fill="#FFD1E3" transform="rotate(12 132 407)" />
+      <!-- Head (circle), eye and nose (circle) -->
+      <circle cx="127" cy="428" r="11" fill="#F7A8C8" />
+      <circle cx="131" cy="426" r="1.8" fill="#2B1B0E" />
+      <circle cx="137" cy="430" r="1.8" fill="#E64980" />
+    </g>
+
+    <!-- Caption (text): MOVED right to make room for the footpath; dark outline added for contrast -->
+    <text x="580" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="22"
+          font-weight="bold" fill="#FFFFFF" stroke="#2B5D22" stroke-width="3" paint-order="stroke">My House &amp; Garden</text>
   </svg>
   </figure>
 </body>
