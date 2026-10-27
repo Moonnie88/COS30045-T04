@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T04 – SVG House &amp; Garden</title>
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      max-width: 840px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #222;
+      background: #fafafa;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    /* Neat border around the drawing; scales down on small screens */
+    svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>T04 – SVG House &amp; Garden</h1>
+  <p>A house and garden drawn with every basic SVG shape: rect, circle, ellipse, line, polyline, polygon, path and text.</p>
+
+  <svg width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="scene-title scene-desc">
+    <title id="scene-title">House and garden scene</title>
+    <desc id="scene-desc">A beige house with a red roof, chimney, door and two windows, a white picket fence, a tree, a sun and a cloud above green hills and grass.</desc>
+
+    <!-- Sky (rect) -->
+    <rect x="0" y="0" width="800" height="340" fill="#87CEEB" />
+
+    <!-- Sun (circle) -->
+    <circle cx="700" cy="80" r="40" fill="#FFD43B" />
+
+    <!-- Cloud (overlapping ellipses) -->
+    <ellipse cx="170" cy="90" rx="60" ry="25" fill="#FFFFFF" />
+    <ellipse cx="215" cy="78" rx="45" ry="22" fill="#FFFFFF" />
+    <ellipse cx="130" cy="80" rx="38" ry="20" fill="#FFFFFF" />
+
+    <!-- Rolling hills (path: M = move to, C = cubic curve, L = line to, Z = close) -->
+    <path d="M 0 330 C 150 260, 300 270, 450 320 C 560 285, 700 250, 800 290 L 800 345 L 0 345 Z"
+          fill="#9BCB5A" />
+
+    <!-- Grass (rect) -->
+    <rect x="0" y="340" width="800" height="160" fill="#6ABE45" />
+
+    <!-- Tree: trunk (rect) and leaves (circle) -->
+    <rect x="600" y="260" width="24" height="100" fill="#8B5A2B" />
+    <circle cx="612" cy="225" r="55" fill="#2E8B57" />
+
+    <!-- Fence rails (line) drawn first so the pickets sit in front -->
+    <line x1="15" y1="358" x2="225" y2="358" stroke="#8B6B4A" stroke-width="4" />
+    <line x1="15" y1="378" x2="225" y2="378" stroke="#8B6B4A" stroke-width="4" />
+
+    <!-- Fence pickets (polyline): one connected outline of seven pointed pickets -->
+    <polyline points="20,390 20,345 30,335 40,345 40,390
+                      50,390 50,345 60,335 70,345 70,390
+                      80,390 80,345 90,335 100,345 100,390
+                      110,390 110,345 120,335 130,345 130,390
+                      140,390 140,345 150,335 160,345 160,390
+                      170,390 170,345 180,335 190,345 190,390
+                      200,390 200,345 210,335 220,345 220,390"
+              fill="#FFFFFF" stroke="#999999" stroke-width="1.5" />
+
+    <!-- Chimney (rect) drawn before the roof so the roof covers its base -->
+    <rect x="415" y="140" width="26" height="60" fill="#8E3B2A" />
+
+    <!-- House body (rect) -->
+    <rect x="250" y="220" width="220" height="160" fill="#F4D9A6" stroke="#8B5E3C" stroke-width="2" />
+
+    <!-- Roof (polygon): left eave, peak, right eave -->
+    <polygon points="235,220 360,130 485,220" fill="#B5452B" stroke="#7A2E1C" stroke-width="2" />
+
+    <!-- Door (rect) and door knob (circle) -->
+    <rect x="340" y="300" width="40" height="80" fill="#6B3E26" />
+    <circle cx="372" cy="342" r="3" fill="#FFD43B" />
+
+    <!-- Left window (rect) with mullions (line) -->
+    <rect x="275" y="250" width="35" height="30" fill="#BFE6FF" stroke="#555555" stroke-width="2" />
+    <line x1="292.5" y1="250" x2="292.5" y2="280" stroke="#555555" stroke-width="2" />
+    <line x1="275" y1="265" x2="310" y2="265" stroke="#555555" stroke-width="2" />
+
+    <!-- Right window (rect) with mullions (line) -->
+    <rect x="410" y="250" width="35" height="30" fill="#BFE6FF" stroke="#555555" stroke-width="2" />
+    <line x1="427.5" y1="250" x2="427.5" y2="280" stroke="#555555" stroke-width="2" />
+    <line x1="410" y1="265" x2="445" y2="265" stroke="#555555" stroke-width="2" />
+
+    <!-- Caption (text) -->
+    <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="22"
+          font-weight="bold" fill="#FFFFFF">My House &amp; Garden</text>
+  </svg>
+</body>
+</html>
