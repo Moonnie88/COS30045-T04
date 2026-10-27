@@ -425,5 +425,82 @@
           font-weight="bold" fill="#FFFFFF" stroke="#2B5D22" stroke-width="3" paint-order="stroke">My House &amp; Garden</text>
   </svg>
   </figure>
+
+  <!-- Step 4: copy of the original scene with the two windows built from one reusable group -->
+  <figure id="scene-grouped-figure">
+    <figcaption>Grouped windows scene (Step 4)</figcaption>
+  <svg id="scene-grouped" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="grouped-title grouped-desc">
+    <title id="grouped-title">House and garden scene (grouped windows)</title>
+    <desc id="grouped-desc">The original house and garden scene, with both windows drawn from one reusable window group.</desc>
+
+    <!-- <defs> holds things to reuse later; anything inside it is not drawn on its own -->
+    <defs>
+      <!-- One window drawn at (0,0). Fill and stroke are set once on the group, so every copy is styled identically -->
+      <g id="window" fill="#BFE6FF" stroke="#555555" stroke-width="2">
+        <rect x="0" y="0" width="35" height="30" />
+        <line x1="17.5" y1="0" x2="17.5" y2="30" />   <!-- vertical mullion: halfway across (35 / 2) -->
+        <line x1="0" y1="15" x2="35" y2="15" />       <!-- horizontal mullion: halfway down (30 / 2) -->
+      </g>
+    </defs>
+
+    <!-- Sky (rect) -->
+    <rect x="0" y="0" width="800" height="340" fill="#87CEEB" />
+
+    <!-- Sun (circle) -->
+    <circle cx="700" cy="80" r="40" fill="#FFD43B" />
+
+    <!-- Cloud (overlapping ellipses) -->
+    <ellipse cx="170" cy="90" rx="60" ry="25" fill="#FFFFFF" />
+    <ellipse cx="215" cy="78" rx="45" ry="22" fill="#FFFFFF" />
+    <ellipse cx="130" cy="80" rx="38" ry="20" fill="#FFFFFF" />
+
+    <!-- Rolling hills (path: M = move to, C = cubic curve, L = line to, Z = close) -->
+    <path d="M 0 330 C 150 260, 300 270, 450 320 C 560 285, 700 250, 800 290 L 800 345 L 0 345 Z"
+          fill="#9BCB5A" />
+
+    <!-- Grass (rect) -->
+    <rect x="0" y="340" width="800" height="160" fill="#6ABE45" />
+
+    <!-- Tree: trunk (rect) and leaves (circle) -->
+    <rect x="600" y="260" width="24" height="100" fill="#8B5A2B" />
+    <circle cx="612" cy="225" r="55" fill="#2E8B57" />
+
+    <!-- Fence rails (line) drawn first so the pickets sit in front -->
+    <line x1="15" y1="358" x2="225" y2="358" stroke="#8B6B4A" stroke-width="4" />
+    <line x1="15" y1="378" x2="225" y2="378" stroke="#8B6B4A" stroke-width="4" />
+
+    <!-- Fence pickets (polyline): one connected outline of seven pointed pickets -->
+    <polyline points="20,390 20,345 30,335 40,345 40,390
+                      50,390 50,345 60,335 70,345 70,390
+                      80,390 80,345 90,335 100,345 100,390
+                      110,390 110,345 120,335 130,345 130,390
+                      140,390 140,345 150,335 160,345 160,390
+                      170,390 170,345 180,335 190,345 190,390
+                      200,390 200,345 210,335 220,345 220,390"
+              fill="#FFFFFF" stroke="#999999" stroke-width="1.5" />
+
+    <!-- Chimney (rect) drawn before the roof so the roof covers its base -->
+    <rect x="415" y="140" width="26" height="60" fill="#8E3B2A" />
+
+    <!-- House body (rect) -->
+    <rect x="250" y="220" width="220" height="160" fill="#F4D9A6" stroke="#8B5E3C" stroke-width="2" />
+
+    <!-- Roof (polygon): left eave, peak, right eave -->
+    <polygon points="235,220 360,130 485,220" fill="#B5452B" stroke="#7A2E1C" stroke-width="2" />
+
+    <!-- Door (rect) and door knob (circle) -->
+    <rect x="340" y="300" width="40" height="80" fill="#6B3E26" />
+    <circle cx="372" cy="342" r="3" fill="#FFD43B" />
+
+    <!-- Windows: two copies of #window. translate(x,y) moves the window's (0,0) corner to (x,y),
+         which is the same x and y the original window rects used -->
+    <use href="#window" transform="translate(275,250)" />   <!-- left window: original rect x=275, y=250 -->
+    <use href="#window" transform="translate(410,250)" />   <!-- right window: original rect x=410, y=250 -->
+
+    <!-- Caption (text) -->
+    <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="22"
+          font-weight="bold" fill="#FFFFFF">My House &amp; Garden</text>
+  </svg>
+  </figure>
 </body>
 </html>
