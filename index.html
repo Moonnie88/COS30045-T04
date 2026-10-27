@@ -28,12 +28,53 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       background: #fff;
     }
+
+    figure {
+      margin: 0 0 2.5rem;
+    }
+
+    figcaption {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Step 2: annotation styles, scoped to the annotated copy only */
+    #scene-annotated #annotations {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #333;
+      stroke: #555;
+      stroke-width: 1;
+      pointer-events: none;
+    }
+
+    /* White outline behind each label so it stays readable on any colour */
+    #scene-annotated #annotations text {
+      stroke: #fff;
+      stroke-width: 3px;
+      stroke-linejoin: round;
+      paint-order: stroke;
+    }
+
+    /* Dots marking the exact coordinate being labelled */
+    #scene-annotated #annotations .marker {
+      fill: #D6336C;
+      stroke: #fff;
+    }
+
+    /* Dashed lines showing radii (r, rx, ry) */
+    #scene-annotated #annotations .dim {
+      stroke: #D6336C;
+      stroke-dasharray: 3 2;
+    }
   </style>
 </head>
 <body>
   <h1>T04 – SVG House &amp; Garden</h1>
   <p>A house and garden drawn with every basic SVG shape: rect, circle, ellipse, line, polyline, polygon, path and text.</p>
 
+  <figure id="scene-original">
+    <figcaption>Original scene</figcaption>
   <svg width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="scene-title scene-desc">
     <title id="scene-title">House and garden scene</title>
     <desc id="scene-desc">A beige house with a red roof, chimney, door and two windows, a white picket fence, a tree, a sun and a cloud above green hills and grass.</desc>
@@ -101,5 +142,141 @@
     <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="22"
           font-weight="bold" fill="#FFFFFF">My House &amp; Garden</text>
   </svg>
+  </figure>
+
+  <!-- Step 2: identical copy of the scene with coordinate labels added on top -->
+  <figure id="scene-annotated-figure">
+    <figcaption>Annotated scene (Step 2)</figcaption>
+  <svg id="scene-annotated" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="annotated-title annotated-desc">
+    <title id="annotated-title">House and garden scene (annotated)</title>
+    <desc id="annotated-desc">The same house and garden scene with labels showing the coordinate attributes of one example of each SVG shape.</desc>
+
+    <!-- Sky (rect) -->
+    <rect x="0" y="0" width="800" height="340" fill="#87CEEB" />
+
+    <!-- Sun (circle) -->
+    <circle cx="700" cy="80" r="40" fill="#FFD43B" />
+
+    <!-- Cloud (overlapping ellipses) -->
+    <ellipse cx="170" cy="90" rx="60" ry="25" fill="#FFFFFF" />
+    <ellipse cx="215" cy="78" rx="45" ry="22" fill="#FFFFFF" />
+    <ellipse cx="130" cy="80" rx="38" ry="20" fill="#FFFFFF" />
+
+    <!-- Rolling hills (path: M = move to, C = cubic curve, L = line to, Z = close) -->
+    <path d="M 0 330 C 150 260, 300 270, 450 320 C 560 285, 700 250, 800 290 L 800 345 L 0 345 Z"
+          fill="#9BCB5A" />
+
+    <!-- Grass (rect) -->
+    <rect x="0" y="340" width="800" height="160" fill="#6ABE45" />
+
+    <!-- Tree: trunk (rect) and leaves (circle) -->
+    <rect x="600" y="260" width="24" height="100" fill="#8B5A2B" />
+    <circle cx="612" cy="225" r="55" fill="#2E8B57" />
+
+    <!-- Fence rails (line) drawn first so the pickets sit in front -->
+    <line x1="15" y1="358" x2="225" y2="358" stroke="#8B6B4A" stroke-width="4" />
+    <line x1="15" y1="378" x2="225" y2="378" stroke="#8B6B4A" stroke-width="4" />
+
+    <!-- Fence pickets (polyline): one connected outline of seven pointed pickets -->
+    <polyline points="20,390 20,345 30,335 40,345 40,390
+                      50,390 50,345 60,335 70,345 70,390
+                      80,390 80,345 90,335 100,345 100,390
+                      110,390 110,345 120,335 130,345 130,390
+                      140,390 140,345 150,335 160,345 160,390
+                      170,390 170,345 180,335 190,345 190,390
+                      200,390 200,345 210,335 220,345 220,390"
+              fill="#FFFFFF" stroke="#999999" stroke-width="1.5" />
+
+    <!-- Chimney (rect) drawn before the roof so the roof covers its base -->
+    <rect x="415" y="140" width="26" height="60" fill="#8E3B2A" />
+
+    <!-- House body (rect) -->
+    <rect x="250" y="220" width="220" height="160" fill="#F4D9A6" stroke="#8B5E3C" stroke-width="2" />
+
+    <!-- Roof (polygon): left eave, peak, right eave -->
+    <polygon points="235,220 360,130 485,220" fill="#B5452B" stroke="#7A2E1C" stroke-width="2" />
+
+    <!-- Door (rect) and door knob (circle) -->
+    <rect x="340" y="300" width="40" height="80" fill="#6B3E26" />
+    <circle cx="372" cy="342" r="3" fill="#FFD43B" />
+
+    <!-- Left window (rect) with mullions (line) -->
+    <rect x="275" y="250" width="35" height="30" fill="#BFE6FF" stroke="#555555" stroke-width="2" />
+    <line x1="292.5" y1="250" x2="292.5" y2="280" stroke="#555555" stroke-width="2" />
+    <line x1="275" y1="265" x2="310" y2="265" stroke="#555555" stroke-width="2" />
+
+    <!-- Right window (rect) with mullions (line) -->
+    <rect x="410" y="250" width="35" height="30" fill="#BFE6FF" stroke="#555555" stroke-width="2" />
+    <line x1="427.5" y1="250" x2="427.5" y2="280" stroke="#555555" stroke-width="2" />
+    <line x1="410" y1="265" x2="445" y2="265" stroke="#555555" stroke-width="2" />
+
+    <!-- Caption (text) -->
+    <text x="400" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="22"
+          font-weight="bold" fill="#FFFFFF">My House &amp; Garden</text>
+
+    <!-- Annotations: labels and callouts drawn last so they sit on top of the scene -->
+    <g id="annotations">
+      <!-- Coordinate system: (0,0) is the top-left corner; x grows right, y grows down -->
+      <circle class="marker" cx="0" cy="0" r="4" />
+      <text x="8" y="18">(0, 0)</text>
+      <text x="52" y="18">x →</text>
+      <text x="8" y="36">y ↓</text>
+      <circle class="marker" cx="800" cy="500" r="4" />
+      <text x="792" y="494" text-anchor="end">(800, 500)</text>
+
+      <!-- circle: sun -->
+      <circle class="marker" cx="700" cy="80" r="3.5" />
+      <line class="dim" x1="700" y1="80" x2="740" y2="80" />
+      <text x="720" y="75" text-anchor="middle">r</text>
+      <line x1="700" y1="122" x2="700" y2="130" />
+      <text x="700" y="142" text-anchor="middle">circle: cx=700, cy=80, r=40</text>
+
+      <!-- ellipse: main cloud puff -->
+      <circle class="marker" cx="170" cy="90" r="3.5" />
+      <line class="dim" x1="170" y1="90" x2="230" y2="90" />
+      <line class="dim" x1="170" y1="90" x2="170" y2="65" />
+      <text x="200" y="86" text-anchor="middle">rx</text>
+      <text x="176" y="76">ry</text>
+      <line x1="170" y1="117" x2="170" y2="125" />
+      <text x="170" y="137" text-anchor="middle">ellipse: cx=170, cy=90, rx=60, ry=25</text>
+
+      <!-- polygon: roof (all three corner points) -->
+      <circle class="marker" cx="235" cy="220" r="3.5" />
+      <circle class="marker" cx="360" cy="130" r="3.5" />
+      <circle class="marker" cx="485" cy="220" r="3.5" />
+      <line x1="360" y1="116" x2="360" y2="126" />
+      <text x="360" y="112" text-anchor="middle">polygon: 235,220 360,130 485,220</text>
+
+      <!-- path: hills (start point marked; callout runs to it) -->
+      <circle class="marker" cx="0" cy="330" r="4" />
+      <line x1="12" y1="214" x2="2" y2="326" />
+      <text x="12" y="168">path (hills):</text>
+      <text x="12" y="182">M 0 330 → move to start</text>
+      <text x="12" y="196">C 150 260, 300 270, 450 320 → curve</text>
+      <text x="12" y="210">L 800 345 L 0 345 Z → line, close</text>
+
+      <!-- rect: house body (top-left corner marked) -->
+      <circle class="marker" cx="250" cy="220" r="3.5" />
+      <text x="244" y="240" text-anchor="end">house rect: x=250, y=220,</text>
+      <text x="244" y="254" text-anchor="end">width=220, height=160</text>
+
+      <!-- line: top fence rail (both end points marked) -->
+      <circle class="marker" cx="15" cy="358" r="3.5" />
+      <circle class="marker" cx="225" cy="358" r="3.5" />
+      <line x1="15" y1="324" x2="15" y2="354" />
+      <text x="10" y="320">line: (15, 358) → (225, 358)</text>
+
+      <!-- polyline: fence pickets (first three points marked) -->
+      <circle class="marker" cx="20" cy="390" r="3.5" />
+      <circle class="marker" cx="20" cy="345" r="3.5" />
+      <circle class="marker" cx="30" cy="335" r="3.5" />
+      <text x="20" y="408">polyline points: 20,390 20,345 30,335 40,345 40,390 …</text>
+
+      <!-- text: caption (anchor point marked on the baseline) -->
+      <circle class="marker" cx="400" cy="470" r="3.5" />
+      <text x="400" y="490" text-anchor="middle">text: x=400, y=470 (baseline, text-anchor=middle)</text>
+    </g>
+  </svg>
+  </figure>
 </body>
 </html>
